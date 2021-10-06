@@ -1,12 +1,14 @@
 import request from 'superagent'
 
 const URL = 'https://films-ghibli.herokuapp.com/films'
+// const query = `${URL}/${this.props.query}/`
 
 //Get all Films
 export async function getAllFilms(){
     const response = await request.get (`${URL}`)
     return response.body
 }
+
 
 // Get Categories
 export async function getCategories() {
@@ -19,6 +21,12 @@ export async function getFilm(id){
     const response = await request.get (`${URL}/films/${id}`)
     return response.body
 }
+
+// Return Queries 
+// export async function getQuery() {
+//     const response = await request.get (`${query}`)
+//     return response.body
+// }
 
 // Delete Film
 export async function deleteFilm(id){

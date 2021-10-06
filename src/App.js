@@ -12,8 +12,7 @@ function App() {
     <div className="App">
       <Router>
       <header>
-        <NavLink exact activeClassName = 'active-link' to ='/'>Home</NavLink>
-        <NavLink exact activeClassName = 'active-link' to = '/catalog'>Catalog</NavLink>        
+        <NavLink exact activeClassName = 'active-link' to ='/'>Home</NavLink>   
         <NavLink exact activeClassName = 'active-link' to = '/create'>Create</NavLink>
       </header>
 
