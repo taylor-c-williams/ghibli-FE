@@ -1,11 +1,11 @@
 import request from 'superagent'
 
-const URL = 'https://films-ghibli.herokuapp.com/films'
+const URL = 'https://films-ghibli.herokuapp.com'
 // const query = `${URL}/${this.props.query}/`
 
 //Get all Films
 export async function getAllFilms(){
-    const response = await request.get (`${URL}`)
+    const response = await request.get(`${URL}/films`);
     return response.body
 }
 

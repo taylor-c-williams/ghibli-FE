@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+import { getCategories } from './FetchUtils';
 
 export default class Create extends Component {
+
+    componentDidMount = async () => {
+        const categories = await getCategories()
+        this.setState ({ categories : categories })
+    }
+
 	state = {
 		title: '',
 		original_title_romanised: '',
@@ -11,10 +18,15 @@ export default class Create extends Component {
 		release_date: '',
 		running_time: '',
 		rt_score: '',
-        category: '',
+        categories: [],
 		img: '',
+        category_id: 1
 	};
 
+    // Submit Handler
+
+
+    // Upload Handler
 	handleUpload = () => {
 		let options = {
 			cloud_name: 'ghibli-cloud',
@@ -23,14 +35,12 @@ export default class Create extends Component {
 			// cropping: true,
 			resource_type: 'image',
 		};
-
 		window.cloudinary.openUploadWidget(options, (error, result) => {
 			console.log(result);
 			if (error) {
 				console.error(error);
 				return;
 			}
-
 			const image = result[0];
 			this.setState({ img: image.url }); // or you can store publicId for easier transformations
 		});
@@ -83,7 +93,13 @@ export default class Create extends Component {
                         </label>
                         <label>
                             Category
-                            <input onChange = {(e) => this.setState ({category: e.target.value})} />
+                            <select onChange = {(e) => this.setState ({category_id: e.target.value})}>
+                            {this.state.categories.map ( category =>
+                                <option
+                                 key = {`${category.category_name}-${category.id}`} value = { category.id }>
+                                     {category.category}                                 
+                                </option>)}
+                            </select>
                         </label>
                         <label>
                             Image
