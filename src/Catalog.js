@@ -1,64 +1,66 @@
 import React, { Component } from 'react'
 import { getAllFilms } from './FetchUtils.js'
+import { Link } from 'react-router-dom'
 import './App.css'
 
 export default class Catalog extends Component {
     state = {
-        filmList: [],
+        films: [],
         query:'',
         isLoading: true
     }
-
+    
     componentDidMount = async () => {
-        // eslint-disable-next-line
-      const films =  await getAllFilms()
-      this.setState ({
-        filmList: films,
-        isLoading: false
+        const films =  await getAllFilms()
+        this.setState ({
+            films: films,
+            isLoading: false
         })
     }
-
-    // Handlers 
-    // handleInput = (e) => {
-    //     this.setState ({query: e.target.value})
-    // }
-
-    // handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     this.setState ({ currentPage: 1})        
-    //     await getAllFilms();
-    // }
-
-    // handleReset = async (e) => {
-    //      await this.setState ({ 
-    //         query: ''
-    //      })
-    //     await getAllFilms()
-    // }
-  
-    render()
-        {
-         
-            console.log(this.state)
-        return (
-            
+    
+    render(){    
+        console.log(this.state)
+        const { films } = this.state
+        return (            
             <div>
-                {/* <section className = "searchInput">
 
-                    <form onSubmit={this.handleSubmit}>
-                    <input className = "searchInput" onChange={this.handleInput} value = {this.state.query} />
-                    <button className = "submitButton">Search!</button>
-                    <button className = "resetButton" onClick={this.handleReset}>Reset!</button>
-                    </form> 
-                </section>
-                 */}
+             { films.map(({
+                 id,
+                 title,
+                 original_title_romanised,
+                 img,
+                 description,
+                 director,
+                 producer,
+                 release_date,
+                 running_time,
+                 rt_score,
+                 category
+              }) =>
+               <Link to ={`edit/${id}`} key = {`${id}`}>
+                  <div className = "film">
+                      <p>{id}</p>
+                      <p>{title}</p>
+                      <p>{original_title_romanised}</p>
+                      <img src = {img} alt = {title} />
+                      <p>Directed By {director} | Produced By {producer}</p>
+                      <p>Release Date {release_date}, Running Time {running_time}</p>
+                      <p>Rotten Tomatoes: {rt_score}</p>
+                      <p>Genre {category}</p>
+                      <p>{description}</p>
+                  </div>
+              </Link>            
+              )
+             }   
+
 
             {
-            this.state.isLoading
-            ?<section className = "loading"><h2> Loading ... </h2></section>
-            : <img src = 'http://www.placekitten.com/200/200' alt="bingo" />
+                this.state.isLoading
+                ?<section className = "loading"><h2> Loading ... </h2></section>
+                : <img src = 'http://www.placekitten.com/200/200' alt="bingo" />
             }  
             </div>
-        )
+            )
+        }
     }
-}
+    

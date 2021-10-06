@@ -22,12 +22,6 @@ export async function getFilm(id){
     return response.body
 }
 
-// Return Queries 
-// export async function getQuery() {
-//     const response = await request.get (`${query}`)
-//     return response.body
-// }
-
 // Delete Film
 export async function deleteFilm(id){
     const response = await request.delete (`${URL}/films/${id}`)
