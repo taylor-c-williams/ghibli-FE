@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { getAllFilms } from './FetchUtils.js'
 import FilmCollection from './Edit.js'
-import request from 'superagent'
+import response from 'superagent'
 import './App.css'
 
 export default class Catalog extends Component {
@@ -11,18 +12,14 @@ export default class Catalog extends Component {
     }
 
     componentDidMount = async () => {
-        await  this.FilmFetch()
+        // eslint-disable-next-line
+      const films =  await getAllFilms()
+      this.setState ({
+        filmList: response.body,
+        isLoading: false
+        })
     }
 
-    FilmFetch = async () => {
-    await this.setState ({ isLoading : true 
-    })
-    const response = await request.get (`https://films-ghibli.herokuapp.com/films?title=${this.state.query}`)
-    this.setState ({
-    filmList: response.body.results,
-    isLoading: false
-    })
-}
 
     // handleInput = (e) => {
     //     this.setState ({query: e.target.value})
@@ -43,7 +40,7 @@ export default class Catalog extends Component {
   
     render()
         {
-            console.log(this.state.filmList)
+            console.log(this.state)
         return (
             <div>
                 <section className = "searchInput">

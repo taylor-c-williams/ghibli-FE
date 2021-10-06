@@ -4,7 +4,7 @@ const URL = 'https://films-ghibli.herokuapp.com/films'
 
 //Get all Films
 export async function getAllFilms(){
-    const response = await request.get (`${URL}/films`)
+    const response = await request.get (`${URL}`)
     return response.body
 }
 
