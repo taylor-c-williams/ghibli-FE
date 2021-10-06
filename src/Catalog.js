@@ -37,27 +37,29 @@ export default class Catalog extends Component {
                  rt_score,
                  category
               }) =>
+              <div className = "film">
                <Link to ={`edit/${id}`} key = {`${id}`}>
-                  <div className = "film">
-                      <p>{id}</p>
+                
                       <p>{title}</p>
                       <p>{original_title_romanised}</p>
                       <img src = {img} alt = {title} />
-                      <p>Directed By {director} | Produced By {producer}</p>
-                      <p>Release Date {release_date}, Running Time {running_time}</p>
-                      <p>Rotten Tomatoes: {rt_score}</p>
-                      <p>Genre {category}</p>
-                      <p>{description}</p>
-                  </div>
-              </Link>            
+                      </Link> 
+                      <p>Directed By: {director} | Produced By: {producer}</p>
+                      <p>Release Date: {release_date} | Running Time: {running_time} mins</p>
+                      <p>Rotten Tomatoes Score: {rt_score}</p>
+                      <p>Genre: {category}</p>
+                      <p>{description}</p>                  
+              
+              </div>           
               )
              }   
 
 
+             {/* Loading ...  */}
             {
                 this.state.isLoading
                 ?<section className = "loading"><h2> Loading ... </h2></section>
-                : <img src = 'http://www.placekitten.com/200/200' alt="bingo" />
+                : <Catalog />
             }  
             </div>
             )
