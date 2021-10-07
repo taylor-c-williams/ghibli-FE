@@ -1,67 +1,67 @@
 import React, { Component } from 'react'
-import FilmCollection from './Edit.js'
-import request from 'superagent'
+import { getAllFilms } from './FetchUtils.js'
+import { Link } from 'react-router-dom'
 import './App.css'
 
 export default class Catalog extends Component {
     state = {
-        filmList: [],
+        films: [],
         query:'',
-        isLoading: false
+        isLoading: true
     }
-
+    
     componentDidMount = async () => {
-        await  this.FilmFetch()
+        const films =  await getAllFilms()
+        this.setState ({
+            films: films,
+            isLoading: false
+        })
     }
-
-    FilmFetch = async () => {
-    await this.setState ({ isLoading : true 
-    })
-    const response = await request.get (`https://films-ghibli.herokuapp.com/films?title=${this.state.query}`)
-    this.setState ({
-    filmList: response.body.results,
-    isLoading: false
-    })
-}
-
-    // handleInput = (e) => {
-    //     this.setState ({query: e.target.value})
-    // }
-
-    // handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     this.setState ({ currentPage: 1})        
-    //     await this.FilmFetch();
-    // }
-
-    // handleReset = async (e) => {
-    //      await this.setState ({ 
-    //         query: ''
-    //      })
-    //     await this.FilmFetch()
-    // }
-  
-    render()
-        {
-            console.log(this.state.filmList)
-        return (
+    
+    render(){    
+        console.log(this.state)
+        const { films } = this.state
+        return (            
             <div>
-                <section className = "searchInput">
-                    {/* Search Input and Reset */}
-                    <form onSubmit={this.handleSubmit}>
-                    <input className = "searchInput" onChange={this.handleInput} />
-                    <button className = "submitButton">Search!</button>
-                    <button className = "resetButton" onClick={this.handleReset}>Reset!</button>
-                    </form> 
-                </section>
-                
 
+             { films.map(({
+                 id,
+                 title,
+                 original_title_romanised,
+                 img,
+                 description,
+                 director,
+                 release_date,
+                 running_time,
+                 rt_score,
+                 category
+              }) =>
+              <div className = "film">
+               <Link to ={`edit/${id}`} key = {`${id} - ${title}`}>
+                
+                      <p>{title}</p>
+                      <p>{original_title_romanised}</p>
+                      <img src = {img} alt = {title} />
+                </Link> 
+                      <p>Directed By: {director}</p>
+                      <p>Release Date: {release_date} | Running Time: {running_time} mins</p>
+                      <p>Rotten Tomatoes Score: {rt_score}</p>
+                      <p>Genre: {category}</p>
+                      <p>{description}</p>                  
+                
+              </div>           
+              )
+             }   
+
+
+             {/* Loading ...  */}
             {
-            this.state.isLoading
-            ?<section className = "loading"><h2> Loading ... </h2></section>
-            : <FilmCollection films = {this.state.filmList} />
+                this.state.isLoading
+                ?<section className = "loading"><h2> Loading ... </h2></section>
+                : null
             }  
             </div>
-        )
+            )
+        }
     }
-}
+    
