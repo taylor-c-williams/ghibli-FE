@@ -31,7 +31,6 @@ export default class Catalog extends Component {
                  img,
                  description,
                  director,
-                 producer,
                  release_date,
                  running_time,
                  rt_score,
@@ -44,7 +43,7 @@ export default class Catalog extends Component {
                       <p>{original_title_romanised}</p>
                       <img src = {img} alt = {title} />
                 </Link> 
-                      <p>Directed By: {director} | Produced By: {producer}</p>
+                      <p>Directed By: {director}</p>
                       <p>Release Date: {release_date} | Running Time: {running_time} mins</p>
                       <p>Rotten Tomatoes Score: {rt_score}</p>
                       <p>Genre: {category}</p>

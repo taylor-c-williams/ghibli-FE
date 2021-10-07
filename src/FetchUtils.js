@@ -30,7 +30,7 @@ export async function deleteFilm(id){
 
 // Create Film
 export async function createFilm(film){
-const response = await request.post (`${URL}/films`)
+const response = await request.post (`${URL}/films/`)
 .send(film)
 return response.body
 }

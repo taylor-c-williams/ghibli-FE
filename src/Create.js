@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
-import { getCategories } from './FetchUtils';
+import { getCategories, createFilm } from './FetchUtils';
+import request from 'superagent';
 
 export default class Create extends Component {
 
@@ -13,39 +14,37 @@ export default class Create extends Component {
 		title: '',
 		original_title_romanised: '',
 		description: '',
-		producer: '',
 		director: '',
 		release_date: '',
 		running_time: '',
 		rt_score: '',
         categories: [],
 		img: '',
-        category_id: 1
+        category_id: 1,
+        owner_id: 1
 	};
 
     // Submit Handler
-
+    handleSubmit = async e => {
+        e.preventDefault()
+        await createFilm(this.state)
+        this.props.history.push()
+    }
 
     // Upload Handler
-	handleUpload = () => {
-		let options = {
-			cloud_name: 'ghibli-cloud',
-			upload_preset: 'ghibli-preset',
-			multiple: false,
-			// cropping: true,
-			resource_type: 'image',
-		};
-		window.cloudinary.openUploadWidget(options, (error, result) => {
-			console.log(result);
-			if (error) {
-				console.error(error);
-				return;
-			}
-			const image = result[0];
-			this.setState({ img: image.url }); // or you can store publicId for easier transformations
-		});
-	};
+    handleImgChange = async (e) => {
+        console.log(e.target.files[0])
+        const data = new FormData();
+        data.append('file', e.target.files[0]);
+        data.append('upload_preset', 'ghibli-preset');
+        data.append('cloud_name','ghibli-cloud');
 
+        const response = await request
+            .post('https://api.cloudinary.com/v1_1/ghibli-cloud/image/upload')
+            .send(data);
+            this.setState({ img: response.body.url })
+        }
+        
 	render() {
 		console.log(this.state);
 		return (
@@ -62,10 +61,12 @@ export default class Create extends Component {
 							Edit
 						</NavLink>
 					</header>
+
+                    {/* Create Form */}
 					<form onSubmit={this.handleSubmit}>
 						<label>
 							Title
-                            <input  onChange = { (e) => this.setState ({title: e.target.value})} />
+                            <input onChange = { (e) => this.setState ({title: e.target.value})} />
                         </label>
                         <label>
                             Original title
@@ -76,20 +77,16 @@ export default class Create extends Component {
                             <input onChange = {(e) => this.setState ({director: e.target.value})} />
                         </label>
                         <label>
-                            Producer
-                            <input onChange = {(e) => this.setState ({producer: e.target.value})} />
-                        </label>
-                        <label>
                             Release Date
-                            <input onChange = {(e) => this.setState ({release_date: e.target.value})} />
+                            <input type = "number" onChange = {(e) => this.setState ({release_date: e.target.value})} />
                         </label>
                         <label>
                             Run time
-                            <input onChange = {(e) => this.setState ({running_time: e.target.value})} />
+                            <input type = "number" onChange = {(e) => this.setState ({running_time: e.target.value})} />
                         </label>
                         <label>
                             Rotten Tomatoes Score
-                            <input onChange = {(e) => this.setState ({rt_score: e.target.value})} />
+                            <input type = "number" onChange = {(e) => this.setState ({rt_score: e.target.value})} />
                         </label>
                         <label>
                             Category
@@ -104,7 +101,8 @@ export default class Create extends Component {
                         <label>
                             Image
                             <input type = 'file' onChange = {this.handleImgChange} />
-                            <button type ='button' onClick = {this.handleUpload} >Upload Image</button>
+                            {/* <button type ='button' onClick = {this.handleUpload} >Upload Image</button> */}
+                            <button>Submit!</button>
                         </label>                  
 					</form>
 				</Router>
