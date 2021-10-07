@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import { getCategories, createFilm } from './FetchUtils';
-import request from 'superagent';
+import  request from 'superagent';
 
 export default class Create extends Component {
 
@@ -44,7 +44,7 @@ export default class Create extends Component {
             .send(data);
             this.setState({ img: response.body.url })
         }
-        
+       
 	render() {
 		console.log(this.state);
 		return (
