@@ -36,18 +36,20 @@ export default class Catalog extends Component {
 						rt_score,
 						category,
 					}) => (
-						<div className="film">
+						
 							<Link to={`edit/${id}`} key={`${id}-${title}`}>
+                                <div className="film">
 								<p>{title}</p>
 								<p>{original_title_romanised}</p>
 								<img src={img} alt={title} />
-							</Link>
+							
 							<p>Directed By: {director}</p>
 							<p>Release Date: {release_date} | Running Time: {running_time} mins</p>
 							<p>Rotten Tomatoes Score: {rt_score}</p>
 							<p>Genre: {category}</p>
 							<p>{description}</p>
 						</div>
+                        </Link>
 					)
 				)}
 

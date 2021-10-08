@@ -4,6 +4,7 @@ import { getCategories, createFilm } from "./FetchUtils";
 import request from "superagent";
 
 export default class Create extends Component {
+    
 	componentDidMount = async () => {
 		const categories = await getCategories();
 		this.setState({

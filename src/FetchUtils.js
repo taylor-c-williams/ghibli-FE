@@ -9,7 +9,6 @@ export async function getAllFilms(){
     return response.body
 }
 
-
 // Get Categories
 export async function getCategories() {
     const response = await request.get (`${URL}/categories`)
@@ -19,12 +18,6 @@ export async function getCategories() {
 //  Get Film by ID 
 export async function getFilm(id){
     const response = await request.get (`${URL}/films/${id}`)
-    return response.body
-}
-
-// Delete Film
-export async function deleteFilm(id){
-    const response = await request.delete (`${URL}/films/${id}`)
     return response.body
 }
 
@@ -39,5 +32,11 @@ return response.body
 export async function editFilm(id, film){
     const response = await request.put (`${URL}/films/${id}`)
     .send (film)
+    return response.body
+}
+
+// Delete Film
+export async function deleteFilm(id){
+    const response = await request.delete (`${URL}/films/${id}`)
     return response.body
 }

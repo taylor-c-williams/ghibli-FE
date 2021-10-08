@@ -6,6 +6,7 @@ import {
 import './App.css';
 import Catalog from './Catalog'
 import Create from './Create'
+import Edit from './Edit'
 
 function App() {
 
@@ -28,6 +29,13 @@ function App() {
         exact
         render = {(routerProps) => <Create {...routerProps}/>}
         />
+
+        <Route
+        path = '/edit/:id'
+        exact
+        render = {(routerProps) => <Edit {...routerProps}/>}
+        />    
+
       </Router>
     </div>
   );
