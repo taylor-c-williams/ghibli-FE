@@ -24,12 +24,6 @@ function App() {
         />
 
       <Route
-        path = '/catalog'
-        exact
-        render = {(routerProps) => <Catalog {...routerProps}/>}
-        />
-
-      <Route
         path = '/create'
         exact
         render = {(routerProps) => <Create {...routerProps}/>}

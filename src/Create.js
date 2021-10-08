@@ -5,11 +5,6 @@ import  request from 'superagent';
 
 export default class Create extends Component {
 
-    componentDidMount = async () => {
-        const categories = await getCategories()
-        this.setState ({ categories : categories })
-    }
-
 	state = {
 		title: '',
 		original_title_romanised: '',
@@ -24,11 +19,16 @@ export default class Create extends Component {
         owner_id: 1
 	};
 
+        componentDidMount = async () => {
+        const categories = await getCategories()
+        this.setState ({ categories : categories })
+    }
+
     // Submit Handler
     handleSubmit = async e => {
         e.preventDefault()
         await createFilm(this.state)
-        this.props.history.push()
+        this.props.history.push('/')
     }
 
     // Upload Handler
@@ -102,7 +102,7 @@ export default class Create extends Component {
                             Image
                             <input type = 'file' onChange = {this.handleImgChange} />
                             {/* <button type ='button' onClick = {this.handleUpload} >Upload Image</button> */}
-                            <button>Submit!</button>
+                            <button type="submit" value = "submit">Submit!</button>
                         </label>                  
 					</form>
 				</Router>
