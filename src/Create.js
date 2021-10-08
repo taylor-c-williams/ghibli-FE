@@ -4,7 +4,7 @@ import { getCategories, createFilm } from "./FetchUtils";
 import request from "superagent";
 
 export default class Create extends Component {
-    
+
 	componentDidMount = async () => {
 		const categories = await getCategories();
 		this.setState({
@@ -30,7 +30,6 @@ export default class Create extends Component {
 	// Submit Handler
 	handleSubmit = async (e) => {
 		e.preventDefault();
-        console.log('i am submit', this.state)
 		await createFilm(this.state);
 		this.props.history.push("/");
 	};
@@ -41,16 +40,13 @@ export default class Create extends Component {
 		data.append("file", e.target.files[0]);
 		data.append("upload_preset", "ghibli-preset");
 		data.append("cloud_name", "ghibli-cloud");
-        console.log('i am image31')
         this.setState ({isLoading: true})
 		const response = await request
 			.post("https://api.cloudinary.com/v1_1/ghibli-cloud/image/upload")
 			.send(data);
-        console.log('i am image', response.body.url)
 		this.setState({ 
             isLoading: false,
             img: response.body.url });
-
 	};
 
 	render() {
