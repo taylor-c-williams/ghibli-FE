@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getCategories, editFilm, getFilm } from "./FetchUtils";
+import { getCategories, editFilm, getFilm, deleteFilm } from "./FetchUtils";
 import request from "superagent";
 
 export default class Edit extends Component {
@@ -49,6 +49,14 @@ export default class Edit extends Component {
 			img: response.body.url,
 		});
 	};
+
+    // Delete Handler
+	 handleDelete = async (e) => {
+	e.preventDefault();
+	await deleteFilm(this.props.match.params.id);
+	this.props.history.push('/');
+	};
+
 
 	render() {
 		console.log(this.state);
@@ -137,6 +145,7 @@ export default class Edit extends Component {
 						/>                    
                     </label>
                     <button disabled = {this.state.isLoading} >Save</button>
+                    <button type = "button" disabled = {this.state.isLoading} onClick= {this.handleDelete} >Delete Entry</button>
 				</form>
 
                 {/* Loading ...  */}
