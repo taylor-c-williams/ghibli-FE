@@ -57,7 +57,7 @@ i {
 }
 
 a :hover{
-  background-color: RGBA(173, 232, 244, .5);
+  background-color: RGBA(173, 232, 244, .3);
   
 }
 
@@ -66,13 +66,15 @@ p {
 }
 
 .catalog{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   grid-gap:40px;
   margin-bottom:50px;
 }
 
-.catalog img {
+.film img {
   margin: 20px;
   border-radius: 5px;
 }
@@ -176,6 +178,18 @@ button:active {
 	box-shadow: -3px 3px 0px 1px #848484;
 }
 
+.create input {
+  width: 400px;
+  padding: 5px;
+}
+
+textarea {
+  border: 1px dotted black;
+  margin:10px;
+  border-radius: 5px;
+  box-shadow: -3px 3px 0px 1px #848484;
+}
+
 .edit {
   display: flex;
   flex-direction: column;
@@ -189,6 +203,16 @@ button:active {
 
 .edit-form input{
   padding: 5px;
+  width: 300px;
+}
+
+.edit-header {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.75em;
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom:15px;
 }
 
 .loading {

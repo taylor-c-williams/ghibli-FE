@@ -72,23 +72,28 @@ export default class Create extends Component {
                             <input type = "number" onChange = {(e) => this.setState ({release_date: e.target.value})} required/>
                         </label>
                         <label>
-                            Run time
+                            Run time (minutes)
                             <input type = "number" onChange = {(e) => this.setState ({running_time: e.target.value})} required />
                         </label>
                         <label>
-                            Rating
+                            Rating (/100)
                             <input type = "number" onChange = {(e) => this.setState ({rt_score: e.target.value})} required  />
                         </label>
                         <label>
-                            Category                            
+                            Genre                            
                             <select className = "dropdown" onChange = {(e) => this.setState ({category_id: e.target.value})}>
                             {this.state.categories.map ( category =>
                                 <option className = "dropdown-content"
                                  key = {`${category.category_name}-${category.id}`} value = { category.id } required >
                                      {category.category}                                
                                 </option>)}
-                            </select>
-                           
+                            </select>                           
+                        </label>
+                        <label>
+                            Description
+                            <textarea
+                            rows = "5" cols = "100"
+							onChange={(e) => this.setState({ description: e.target.value })}/>
                         </label>
                         <label>
                             Upload Image
