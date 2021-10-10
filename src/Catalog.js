@@ -14,7 +14,7 @@ export default class Catalog extends Component {
 		const films = await getAllFilms();
 		this.setState({
 			films: films,
-			isLoading: false
+			isLoading: false,
 		});
 	};
 
@@ -22,7 +22,7 @@ export default class Catalog extends Component {
 		console.log(this.state);
 		const { films } = this.state;
 		return (
-			<div className = "catalog">
+			<div className="catalog">
 				{films.map(
 					({
 						id,
@@ -36,20 +36,24 @@ export default class Catalog extends Component {
 						rt_score,
 						category,
 					}) => (
-						
-							<Link to={`edit/${id}`} key={`${id}-${title}`}>
-                                <div className="film">
-								<p>{title}</p>
-								<p>{original_title_romanised}</p>
+						<Link to={`edit/${id}`} key={`${id}-${title}`}>
+							<div className="film">
+								<span className="title">{title}</span>
+								<span className="subtitle">{original_title_romanised}</span>
 								<img src={img} alt={title} />
-							
-							<p>Directed By: {director}</p>
-							<p>Release Date: {release_date} | Running Time: {running_time} mins</p>
-							<p>Rotten Tomatoes Score: {rt_score}</p>
-							<p>Genre: {category}</p>
-							<p>{description}</p>
-						</div>
-                        </Link>
+								<p>Directed By {director}</p>
+								<section className="stats">							
+									<p>{release_date}</p>
+									<p>{running_time} mins</p>
+									<p>Rating: {rt_score}/100</p>
+									<p> {category}</p>
+								</section>
+
+								<section className="description">
+									<p>{description}</p>
+								</section>
+							</div>
+						</Link>
 					)
 				)}
 

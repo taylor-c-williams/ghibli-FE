@@ -53,50 +53,45 @@ export default class Create extends Component {
 		console.log(this.state);
 		return (
 			<div>
-				
-					<header>
-					
-					</header>
-
-                    {/* Create Form */}
+				   {/* Create Form */}
 					<form onSubmit={this.handleSubmit}>
 						<label>
 							Title
-                            <input onChange = { (e) => this.setState ({title: e.target.value})} />
+                            <input onChange = { (e) => this.setState ({title: e.target.value})} required />
                         </label>
                         <label>
                             Original title
-                            <input onChange = {(e) => this.setState ({original_title_romanised: e.target.value})} />
+                            <input onChange = {(e) => this.setState ({original_title_romanised: e.target.value})} required />
                         </label>
                         <label>
                             Director
-                            <input onChange = {(e) => this.setState ({director: e.target.value})} />
+                            <input onChange = {(e) => this.setState ({director: e.target.value})} required />
                         </label>
                         <label>
                             Release Date
-                            <input type = "number" onChange = {(e) => this.setState ({release_date: e.target.value})} />
+                            <input type = "number" onChange = {(e) => this.setState ({release_date: e.target.value})} required/>
                         </label>
                         <label>
                             Run time
-                            <input type = "number" onChange = {(e) => this.setState ({running_time: e.target.value})} />
+                            <input type = "number" onChange = {(e) => this.setState ({running_time: e.target.value})} required />
                         </label>
                         <label>
                             Rating
-                            <input type = "number" onChange = {(e) => this.setState ({rt_score: e.target.value})} />
+                            <input type = "number" onChange = {(e) => this.setState ({rt_score: e.target.value})} required  />
                         </label>
                         <label>
                             Category
                             <select onChange = {(e) => this.setState ({category_id: e.target.value})}>
                             {this.state.categories.map ( category =>
                                 <option
-                                 key = {`${category.category_name}-${category.id}`} value = { category.id }>
+                                 key = {`${category.category_name}-${category.id}`} value = { category.id } required >
                                      {category.category}                                 
                                 </option>)}
                             </select>
                         </label>
                         <label>
                             Image
-                            <input type = 'file' onChange = {this.handleImgChange} />
+                            <input type = 'file' onChange = {this.handleImgChange} required />
                             <button type="submit" value="submit" disabled = {this.state.isLoading}>Submit!</button>
                         </label>                  
 					</form>

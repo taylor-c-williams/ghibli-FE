@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Space+Mono&family=Work+Sans&display=swap');
+
+/* font-family: 'Poppins', sans-serif;
+font-family: 'Space Mono', monospace;
+font-family: 'Work Sans', sans-serif; */
+
 *{
   box-sizing: border-box;
 }
@@ -5,7 +11,7 @@
 body, html {
   height:100%;
   width:100%;
-  margin:0;
+  margin:10px;
   padding:0;
 }
 
@@ -19,21 +25,66 @@ i {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'poppins', sans-serif;
+}
+
+.nav {
   font-family: 'Space Mono', monospace;
+  font-size: 1.1em;
+  border-bottom:1px dashed;
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.active-link {
+  background-color: pink;
+  padding: 5px;
+}
+
+a :hover{
+  background-color: pink;
+}
+
+
+p {
+  padding: -5px;
 }
 
 .catalog{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-content: center;
-  align-items: center;
+  grid-gap:40px;
+}
+
+.catalog img {
+  margin: 20px;
+}
+
+.film {
+  padding: 20px;
+  border: 1px dotted;
+  border-radius: 5px;
+  width: 500px;
+}
+
+.title {
+  font-size: 1.6em;
+  font-family: 'Space Mono', monospace;
+}
+
+.subtitle{
+  font-style: italic;
+  display: block;
+}
+
+.stats {
+  display: grid;
+ grid-template-columns: 1fr 1fr;
+ font-family: 'Space Mono', monospace;
 }
 
 a:link, :active, :visited{
   text-decoration: none;
-}
-
-
-.App-link {
-  color: #61dafb;
+  color:black
 }

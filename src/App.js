@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <header>
-        <NavLink exact activeClassName = 'active-link' to ='/'>Home</NavLink>   
+      <header className = "nav">
+        <NavLink exact activeClassName = 'active-link' to ='/'>Catalog</NavLink>&nbsp;▿&nbsp;
         <NavLink exact activeClassName = 'active-link' to = '/create'>Create</NavLink>
       </header>
 
