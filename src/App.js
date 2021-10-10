@@ -14,9 +14,12 @@ function App() {
     <div className="App">
       <Router>
       <header className = "nav">
-        <NavLink exact activeClassName = 'active-link' to ='/'>Catalog</NavLink>&nbsp;▿&nbsp;
-        <NavLink exact activeClassName = 'active-link' to = '/create'>Create</NavLink>
+        <NavLink exact activeClassName = 'active-link' to ='/'>CATALOG</NavLink>&nbsp;▿&nbsp;
+        <NavLink exact activeClassName = 'active-link' to = '/create'>ADD FILM</NavLink>        
       </header>
+      <section className = "headerlogo">
+        <img src ="ghibli-logo.png" alt = "studio ghibli" width = "40%"/>
+      </section>
 
       <Route
         path = '/'

@@ -52,7 +52,7 @@ export default class Create extends Component {
 	render() {
 		console.log(this.state);
 		return (
-			<div>
+			<div className = "create">
 				   {/* Create Form */}
 					<form onSubmit={this.handleSubmit}>
 						<label>
@@ -68,7 +68,7 @@ export default class Create extends Component {
                             <input onChange = {(e) => this.setState ({director: e.target.value})} required />
                         </label>
                         <label>
-                            Release Date
+                            Release Year
                             <input type = "number" onChange = {(e) => this.setState ({release_date: e.target.value})} required/>
                         </label>
                         <label>
@@ -80,18 +80,21 @@ export default class Create extends Component {
                             <input type = "number" onChange = {(e) => this.setState ({rt_score: e.target.value})} required  />
                         </label>
                         <label>
-                            Category
-                            <select onChange = {(e) => this.setState ({category_id: e.target.value})}>
+                            Category                            
+                            <select className = "dropdown" onChange = {(e) => this.setState ({category_id: e.target.value})}>
                             {this.state.categories.map ( category =>
-                                <option
+                                <option className = "dropdown-content"
                                  key = {`${category.category_name}-${category.id}`} value = { category.id } required >
-                                     {category.category}                                 
+                                     {category.category}                                
                                 </option>)}
                             </select>
+                           
                         </label>
                         <label>
-                            Image
-                            <input type = 'file' onChange = {this.handleImgChange} required />
+                            Upload Image
+                            <input className = 'upload' type = 'file' onChange = {this.handleImgChange} required />
+                        </label>
+                        <label>
                             <button type="submit" value="submit" disabled = {this.state.isLoading}>Submit!</button>
                         </label>                  
 					</form>

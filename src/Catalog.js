@@ -22,7 +22,9 @@ export default class Catalog extends Component {
 		console.log(this.state);
 		const { films } = this.state;
 		return (
-			<div className="catalog">
+			<div>
+				
+				<div className = "catalog">
 				{films.map(
 					({
 						id,
@@ -63,6 +65,7 @@ export default class Catalog extends Component {
 						<h2> Loading ... </h2>
 					</section>
 				) : null}
+			</div>
 			</div>
 		);
 	}

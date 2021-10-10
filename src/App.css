@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Space+Mono&family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');
 
 /* font-family: 'Poppins', sans-serif;
 font-family: 'Space Mono', monospace;
@@ -25,27 +27,38 @@ i {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'poppins', sans-serif;
+  font-family: 'inter', sans-serif;
+}
+
+.headerlogo{
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
 }
 
 .nav {
-  font-family: 'Space Mono', monospace;
+  font-family: 'inter', sans-serif;
   font-size: 1.1em;
-  border-bottom:1px dashed;
-  width: 80%;
+  border-bottom:1px solid;
   padding: 10px;
+  padding-bottom:20px;
   margin-bottom: 20px;
+  position: absolute;
+  z-index: 2;
+  top: 12%;
+  left: 50%;
 }
 
 .active-link {
   background-color: pink;
   padding: 5px;
+  border-radius: 5px;
+  box-shadow: -3px 3px 0px 1px #848484;
 }
 
 a :hover{
   background-color: pink;
 }
-
 
 p {
   padding: -5px;
@@ -66,6 +79,7 @@ p {
   border: 1px dotted;
   border-radius: 5px;
   width: 500px;
+  box-shadow: -3px 3px 0px 1px #848484;
 }
 
 .title {
@@ -87,4 +101,129 @@ p {
 a:link, :active, :visited{
   text-decoration: none;
   color:black
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  text-align: left;
+  font-style: italic;
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 50px;
+}
+
+button, select, input { 
+  border: 1px dotted; 
+  border-radius: 10px;;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: .15em;
+  font-size:.85em;
+  background-color: white;
+  margin-bottom: 20px;
+  margin-top:5px;
+  cursor: pointer;
+  display: block;
+  box-shadow: -3px 3px 0px 1px #848484;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+outline: none;
+}
+
+select {
+  text-align: center;
+  margin:10px;
+}
+
+button, .upload {
+  font-family: 'Space Mono', monospace;
+	background-color: white;
+	border: 1px dotted black;
+  border-radius: 10px;;
+	font-size: .75em;
+	cursor: pointer;
+	box-shadow: -3px 3px 0px 1px #848484;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+}
+
+button {
+  font-size: 1em;
+}
+
+button:hover {
+	background-color: #7DAD71;
+	color: white;
+  -webkit-animation-name: hvr-hang-sink, hvr-hang;
+  animation-name: hvr-hang-sink, hvr-hang;
+  -webkit-animation-duration: .3s, 1.5s;
+  animation-duration: .3s, 1.5s;
+  -webkit-animation-delay: 0s, .3s;
+  animation-delay: 0s, .3s;
+  -webkit-animation-timing-function: ease-out, ease-in-out;
+  animation-timing-function: ease-out, ease-in-out;
+  -webkit-animation-iteration-count: 1, infinite;
+  animation-iteration-count: 1, infinite;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-direction: normal, alternate;
+  animation-direction: normal, alternate;
+}
+
+button:active {
+  font-family: 'Space Mono', monospace;
+	background-color: #4a4140;
+	color: white;
+	border: 1px dotted black;
+	font-size: 1em;
+	cursor: pointer;
+	box-shadow: 5px 5px 0px 1px #848484;
+}
+
+@-webkit-keyframes hvr-hang {
+  0% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  50% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+  100% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+}
+@keyframes hvr-hang {
+  0% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  50% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+  100% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+}
+@-webkit-keyframes hvr-hang-sink {
+  100% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+}
+@keyframes hvr-hang-sink {
+  100% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
 }
