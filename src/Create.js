@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import { getCategories, createFilm } from './FetchUtils';
 import  request from 'superagent';
 
@@ -7,7 +6,9 @@ export default class Create extends Component {
 
     componentDidMount = async () => {
         const categories = await getCategories()
-        this.setState ({ categories : categories })
+        this.setState ({ 
+			isLoading: false,
+			categories : categories })
     }
 
 	state = {
@@ -21,14 +22,15 @@ export default class Create extends Component {
         categories: [],
 		img: '',
         category_id: 1,
-        owner_id: 1
+        owner_id: 1,
+		isLoading: true
 	};
 
     // Submit Handler
     handleSubmit = async e => {
         e.preventDefault()
         await createFilm(this.state)
-        this.props.history.push()
+        this.props.history.push('/')
     }
 
     // Upload Handler
@@ -42,70 +44,67 @@ export default class Create extends Component {
         const response = await request
             .post('https://api.cloudinary.com/v1_1/ghibli-cloud/image/upload')
             .send(data);
-            this.setState({ img: response.body.url })
+            this.setState({ 
+				isLoading: false,
+				img: response.body.url })
         }
        
 	render() {
 		console.log(this.state);
 		return (
-			<div>
-				<Router>
-					<header>
-						<NavLink exact activeClassName='active-link' to='/'>
-							Home
-						</NavLink>
-						<NavLink exact activeClassName='active-link' to='/catalog'>
-							Catalog
-						</NavLink>
-						<NavLink exact activeClassName='active-link' to='/Edit'>
-							Edit
-						</NavLink>
-					</header>
-
-                    {/* Create Form */}
+			<div className = "create">
+				   {/* Create Form */}
 					<form onSubmit={this.handleSubmit}>
 						<label>
 							Title
-                            <input onChange = { (e) => this.setState ({title: e.target.value})} />
+                            <input onChange = { (e) => this.setState ({title: e.target.value})} required />
                         </label>
                         <label>
                             Original title
-                            <input onChange = {(e) => this.setState ({original_title_romanised: e.target.value})} />
+                            <input onChange = {(e) => this.setState ({original_title_romanised: e.target.value})} required />
                         </label>
                         <label>
                             Director
-                            <input onChange = {(e) => this.setState ({director: e.target.value})} />
+                            <input onChange = {(e) => this.setState ({director: e.target.value})} required />
                         </label>
                         <label>
-                            Release Date
-                            <input type = "number" onChange = {(e) => this.setState ({release_date: e.target.value})} />
+                            Release Year
+                            <input type = "number" onChange = {(e) => this.setState ({release_date: e.target.value})} required/>
                         </label>
                         <label>
                             Run time
-                            <input type = "number" onChange = {(e) => this.setState ({running_time: e.target.value})} />
+                            <input type = "number" onChange = {(e) => this.setState ({running_time: e.target.value})} required />
                         </label>
                         <label>
-                            Rotten Tomatoes Score
-                            <input type = "number" onChange = {(e) => this.setState ({rt_score: e.target.value})} />
+                            Rating
+                            <input type = "number" onChange = {(e) => this.setState ({rt_score: e.target.value})} required  />
                         </label>
                         <label>
-                            Category
-                            <select onChange = {(e) => this.setState ({category_id: e.target.value})}>
+                            Category                            
+                            <select className = "dropdown" onChange = {(e) => this.setState ({category_id: e.target.value})}>
                             {this.state.categories.map ( category =>
-                                <option
-                                 key = {`${category.category_name}-${category.id}`} value = { category.id }>
-                                     {category.category}                                 
+                                <option className = "dropdown-content"
+                                 key = {`${category.category_name}-${category.id}`} value = { category.id } required >
+                                     {category.category}                                
                                 </option>)}
                             </select>
+                           
                         </label>
                         <label>
-                            Image
-                            <input type = 'file' onChange = {this.handleImgChange} />
-                            {/* <button type ='button' onClick = {this.handleUpload} >Upload Image</button> */}
-                            <button>Submit!</button>
+                            Upload Image
+                            <input className = 'upload' type = 'file' onChange = {this.handleImgChange} required />
+                        </label>
+                        <label>
+                            <button type="submit" value="submit" disabled = {this.state.isLoading}>Submit</button>
                         </label>                  
 					</form>
-				</Router>
+
+									{/* Loading ...  */}
+				{this.state.isLoading ? (
+					<section className="loading">
+						<h2> Uploading ... </h2>
+					</section>
+				) : null}
 			</div>
 		);
 	}
