@@ -15,6 +15,7 @@ export default class Edit extends Component {
 		img: "",
 		category_id: 1,
 		owner_id: 1,
+		isLoading: true
 	};
 
 	componentDidMount = async () => {
@@ -63,9 +64,9 @@ export default class Edit extends Component {
 
 		return (
 			<div className = "edit">
+				<span className="edit-header">Edit:</span>
                 {/* Render Current Film */}
-				<div className="film">
-				<img src = "brush.png" alt = "edit"/>
+				<div className="film">				
 				<span className="title">{this.state.title}</span>
 								<span className="subtitle">{this.state.original_title_romanised}</span>
 								<img src={this.state.img} alt={this.state.title} />
@@ -85,39 +86,46 @@ export default class Edit extends Component {
                 {/* Edit Film Info */}
 				<form className="edit-form" onSubmit={this.handleSubmit}>
 					<label>
-						Title:
+						Title
 						<input
 							onChange={(e) => this.setState({ title: e.target.value })}
 							value = {this.state.title}
 						/>
 					</label>
 					<label>
-                     Image:
+						Original Title
+						<input
+							onChange={(e) => this.setState({ original_title_romanised: e.target.value })}
+							value = {this.state.original_title_romanised}
+						/>
+					</label>
+					<label>
+                     Image
                      <input type="file" onChange={this.handleImgChange} />
                     </label>
                     <label>
-                        Director:
+                        Director
                         <input
 							onChange={(e) => this.setState({ director: e.target.value })}
 							value = {this.state.director}
 						/>
                     </label>            
                     <label>
-                        Release Date:
+                        Release Year
                         <input type = "year"
 							onChange={(e) => this.setState({ release_date: e.target.value })}
 							value = {this.state.release_date}
 						/>
                     </label>
                     <label>
-                        Run Time:
+                        Runtime (minutes)
                         <input type = "number"
 							onChange={(e) => this.setState({ running_time: e.target.value })}
 							value = {this.state.running_time}
 						/>
                     </label>
                     <label>
-                        Rating: 
+                        Rating (/100)
                         <input type = "number"
 							onChange={(e) => this.setState({ rt_score: e.target.value })}
                             value = {this.state.rt_score}
@@ -125,7 +133,7 @@ export default class Edit extends Component {
 
                     </label>
                     <label>
-                        Genre:
+                        Genre
                         <select
 							onChange={(e) => this.setState({ category_id: e.target.value })}
 							value = {this.state.title}
@@ -140,9 +148,9 @@ export default class Edit extends Component {
                              </select>
                     </label>
                     <label>
-                        Description: 
+                        Description
                         <textarea
-                            rows = "5" cols = "100"
+                            rows = "5" cols = "80"
 							onChange={(e) => this.setState({ description: e.target.value })}
 							value = {this.state.description}
 						/>                    
