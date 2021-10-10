@@ -14,7 +14,7 @@ export default class Catalog extends Component {
 		const films = await getAllFilms();
 		this.setState({
 			films: films,
-			isLoading: false,
+			isLoading: false
 		});
 	};
 
@@ -22,7 +22,7 @@ export default class Catalog extends Component {
 		console.log(this.state);
 		const { films } = this.state;
 		return (
-			<div>
+			<div className = "catalog">
 				{films.map(
 					({
 						id,

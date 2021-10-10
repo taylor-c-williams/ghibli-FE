@@ -5,13 +5,13 @@ const URL = 'https://films-ghibli.herokuapp.com'
 
 //Get all Films
 export async function getAllFilms(){
-    const response = await request.get(`${URL}/films`);
+    const response = await request.get(`${URL}/films/`);
     return response.body
 }
 
 // Get Categories
 export async function getCategories() {
-    const response = await request.get (`${URL}/categories`)
+    const response = await request.get (`${URL}/categories/`)
     return response.body
 }
 
