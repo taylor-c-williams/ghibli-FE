@@ -50,14 +50,15 @@ i {
 }
 
 .active-link {
-  background-color: pink;
+  background-color: RGBA(173, 232, 244, .5);
   padding: 5px;
   border-radius: 5px;
-  box-shadow: -3px 3px 0px 1px #848484;
+  /* box-shadow: -3px 3px 0px 1px #848484; */
 }
 
 a :hover{
-  background-color: pink;
+  background-color: RGBA(173, 232, 244, .5);
+  
 }
 
 p {
@@ -68,10 +69,12 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap:40px;
+  margin-bottom:50px;
 }
 
 .catalog img {
   margin: 20px;
+  border-radius: 5px;
 }
 
 .film {
@@ -83,7 +86,7 @@ p {
 }
 
 .title {
-  font-size: 1.6em;
+  font-size: 1.7em;
   font-family: 'Space Mono', monospace;
 }
 
@@ -110,8 +113,7 @@ form {
   align-items: center;
   width: 80%;
   text-align: left;
-  font-style: italic;
-  font-family: 'Space Mono', monospace;
+  font-family: 'Inter', monospace;
   margin-bottom: 50px;
 }
 
@@ -156,11 +158,48 @@ button, .upload {
 
 button {
   font-size: 1em;
+  font-family: 'Inter',s;
 }
 
 button:hover {
-	background-color: #7DAD71;
+	background-color: RGBA(250, 225, 221, 1);
+	color: grey;
+  border-color: RGBA(250, 225, 221, 1);
+}
+
+button:active {
+  font-family: 'Space Mono', monospace;
+	background-color: #4a4140;
 	color: white;
+	border: 1px dotted black;
+	cursor: pointer;
+	box-shadow: -3px 3px 0px 1px #848484;
+}
+
+.edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-form {
+  margin:50px;
+}
+
+.edit-form input{
+  padding: 5px;
+}
+
+.loading {
+  width: 100%;
+  padding: 50px;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  border: 1px dotted black;
   -webkit-animation-name: hvr-hang-sink, hvr-hang;
   animation-name: hvr-hang-sink, hvr-hang;
   -webkit-animation-duration: .3s, 1.5s;
@@ -175,16 +214,6 @@ button:hover {
   animation-fill-mode: forwards;
   -webkit-animation-direction: normal, alternate;
   animation-direction: normal, alternate;
-}
-
-button:active {
-  font-family: 'Space Mono', monospace;
-	background-color: #4a4140;
-	color: white;
-	border: 1px dotted black;
-	font-size: 1em;
-	cursor: pointer;
-	box-shadow: 5px 5px 0px 1px #848484;
 }
 
 @-webkit-keyframes hvr-hang {

@@ -95,7 +95,7 @@ export default class Create extends Component {
                             <input className = 'upload' type = 'file' onChange = {this.handleImgChange} required />
                         </label>
                         <label>
-                            <button type="submit" value="submit" disabled = {this.state.isLoading}>Submit!</button>
+                            <button type="submit" value="submit" disabled = {this.state.isLoading}>Submit</button>
                         </label>                  
 					</form>
 

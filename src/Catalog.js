@@ -23,7 +23,6 @@ export default class Catalog extends Component {
 		const { films } = this.state;
 		return (
 			<div>
-				
 				<div className = "catalog">
 				{films.map(
 					({
@@ -38,7 +37,7 @@ export default class Catalog extends Component {
 						rt_score,
 						category,
 					}) => (
-						<Link to={`edit/${id}`} key={`${id}-${title}`}>
+						<Link to={`edit/${id}`} key={`${id}-${title}`} title = 'Edit Entry' >
 							<div className="film">
 								<span className="title">{title}</span>
 								<span className="subtitle">{original_title_romanised}</span>

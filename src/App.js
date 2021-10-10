@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <Router>
       <header className = "nav">
-        <NavLink exact activeClassName = 'active-link' to ='/'>CATALOG</NavLink>&nbsp;▿&nbsp;
+        <NavLink exact activeClassName = 'active-link' to ='/'>WORKS</NavLink>&nbsp;&nbsp;▿&nbsp;&nbsp;
         <NavLink exact activeClassName = 'active-link' to = '/create'>ADD FILM</NavLink>        
       </header>
       <section className = "headerlogo">

@@ -62,25 +62,28 @@ export default class Edit extends Component {
 		console.log(this.state);
 
 		return (
-			<div>
-
+			<div className = "edit">
                 {/* Render Current Film */}
 				<div className="film">
-					<p>{this.state.title}</p>
-					<p>{this.state.original_title_romanised}</p>
-					<img src={this.state.img} alt={this.state.title} />
-					<p>Directed By: {this.state.director}</p>
-					<p>
-						Release Date: {this.state.release_date} | Running Time:{" "}
-						{this.state.running_time} mins
-					</p>
-					<p>Rotten Tomatoes Score: {this.state.rt_score}</p>
-					<p>Genre: {this.state.category}</p>
-					<p>{this.state.description}</p>
+				<img src = "brush.png" alt = "edit"/>
+				<span className="title">{this.state.title}</span>
+								<span className="subtitle">{this.state.original_title_romanised}</span>
+								<img src={this.state.img} alt={this.state.title} />
+								<p>Directed By {this.state.director}</p>
+								<section className="stats">							
+									<p>{this.state.release_date}</p>
+									<p>{this.state.running_time} mins</p>
+									<p>Rating: {this.state.rt_score}/100</p>
+									<p> {this.state.category}</p>
+								</section>
+
+								<section className="description">
+									<p>{this.state.description}</p>
+								</section> 
 				</div>
 
                 {/* Edit Film Info */}
-				<form onSubmit={this.handleSubmit}>
+				<form className="edit-form" onSubmit={this.handleSubmit}>
 					<label>
 						Title:
 						<input
