@@ -8,6 +8,7 @@ export default class Catalog extends Component {
 		films: [],
 		query: "",
 		isLoading: true,
+		sorted: ''
 	};
 
 	componentDidMount = async () => {
@@ -18,11 +19,53 @@ export default class Catalog extends Component {
 		});
 	};
 
+	handleChange = (e) => {
+        this.setState({ sort: e.target.value })
+    }
+
+
+
 	render() {
 		console.log(this.state);
 		const { films } = this.state;
+
+		// const allFilms = this.state.films
+		// const FilteredFilms = allFilms.sort((a, b) => a.this.state.sorted - b.this.state.sorted)
+		// 	.map((filteredFilm) => (
+		// 		<Link
+		// 			to={`edit/${filteredFilm.id}`}
+		// 			key={`${filteredFilm.id}-${filteredFilm.title}`}
+		// 			title="Edit Entry"
+		// 		>
+		// 			<div className="film">
+		// 				<span className="title">{filteredFilm.title}</span>
+		// 				<span className="subtitle">
+		// 					{filteredFilm.original_title_romanised}
+		// 				</span>
+		// 				<img src={filteredFilm.img} alt={filteredFilm.title} />
+		// 				<p>Directed By {filteredFilm.director}</p>
+		// 				<section className="stats">
+		// 					<p>{filteredFilm.release_date}</p>
+		// 					<p>{filteredFilm.running_time} mins</p>
+		// 					<p>Rating: {filteredFilm.rt_score}/100</p>
+		// 					<p> {filteredFilm.category}</p>
+		// 				</section>
+	
+		// 				<section className="description">
+		// 					<p>{filteredFilm.description}</p>
+		// 				</section>
+		// 			</div>
+		// 		</Link>
+		// 	));
+
 		return (
 			<div>
+				{/* <p>Sort By {this.state.sorted} </p>
+                 <select onChange = {this.handleChange}>
+					 <option value = "rt_score">Rating</option>
+					 <option value = "running_time">Runtime</option>
+					 <option value = "release_date">Release Date</option>
+				</select> */}
 				<div className = "catalog">
 				{films.map(
 					({
