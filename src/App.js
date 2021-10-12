@@ -21,8 +21,6 @@ function App() {
         <img src ="ghibli-logo.png" alt = "studio ghibli" width = "40%"/>
       </section>
 
-      
-
       <Route
         path = '/'
         exact
